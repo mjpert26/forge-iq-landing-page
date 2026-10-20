@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/*
+ * Theme: the page is intentionally light, with navy brand bands for the
+ * header, hero, Forge IQ and footer. It does not follow the OS dark-mode
+ * setting, so brand colours and contrast stay as designed on every device.
+ */
+@theme {
+  --color-navy: #0a1628;
+  --color-navy-2: #0f2040;
+  --color-navy-line: #1e3358;
+  --color-navy-line-2: #23406e;
+  --color-on-navy: #f8faff;
+  --color-on-navy-muted: #b6c2d6;
+
+  --color-orange: #f26b1d;
+  --color-orange-hover: #ff7f35;
+  --color-orange-ink: #b8470a; /* orange text on light grounds (AA) */
+  --color-orange-soft: #ff9a5c; /* orange text on navy (AA) */
+  --color-blue: #1565c0;
+  --color-blue-soft: #6aa8f0;
+
+  --color-page: #f8faff;
+  --color-surface: #ffffff;
+  --color-ink: #0a1628;
+  --color-muted: #4b5563;
+  --color-line: #d7dfec;
+
+  --color-signal-green: #2fb36b;
+  --color-signal-yellow: #f2b705;
+  --color-signal-red: #e5534b;
+
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-brand: var(--font-barlow), "Arial Narrow", sans-serif;
+
+  --header-h: 4.25rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    background: var(--color-navy);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 74rem;
+    margin-inline: auto;
+    padding-inline: max(1.25rem, env(safe-area-inset-left, 0px));
+  }
+  @media (min-width: 40rem) {
+    .container-page {
+      padding-inline: 1.75rem;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3rem;
+    padding: 0 1.375rem;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--color-orange);
+    color: var(--color-navy);
+  }
+  .btn-primary:hover {
+    background: var(--color-orange-hover);
+  }
+  .btn-ghost {
+    border-color: rgb(248 250 255 / 0.45);
+    color: var(--color-on-navy);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-on-navy);
+    background: rgb(248 250 255 / 0.06);
+  }
+  .btn-navy {
+    background: var(--color-navy);
+    color: var(--color-on-navy);
+  }
+  .btn-navy:hover {
+    background: var(--color-navy-2);
+  }
+
+  .kicker {
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-orange-ink);
+  }
+
+  .heading-section {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.125rem, 1.4rem + 2.6vw, 3.375rem);
+    line-height: 1.06;
+    letter-spacing: 0.01em;
+  }
+
+  /* Brand accent stripe (orange to blue), used sparingly. */
+  .cooling {
+    height: 8px;
+    background: linear-gradient(
+      90deg,
+      #fdd27a 0%,
+      #f26b1d 22%,
+      #c75a39 42%,
+      #636696 58%,
+      #1b6fdd 76%,
+      #0c47a0 100%
+    );
+  }
+}
+
+/*
+ * Hero entrance: line-by-line stagger adapted from React Bits "Staggered Text"
+ * (segmentBy="lines", blur disabled). Pure CSS so content renders without JS.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .stagger-in {
+    animation: stagger-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+}
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * Scroll reveal: React Bits' recommended single page-wide reveal
+ * (opacity + 20px rise, once, -80px margin, ~0.5s ease-out). Only elements
+ * that start below the fold are ever hidden, and only after hydration.
+ */
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
