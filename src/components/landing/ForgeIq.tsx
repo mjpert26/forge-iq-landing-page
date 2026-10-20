@@ -1,4 +1,4 @@
-import { forgeIq } from "@/content/partners";
+import { forgeIq } from "@/content/landing";
 import { sampleScreen, verdictMeaning, type Verdict } from "@/content/forge-iq";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";

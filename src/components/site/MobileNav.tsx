@@ -1,13 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
-type MobileLink = { href: string; label: string; active?: boolean };
+type MobileLink = { href: string; label: string };
 
-/** Small-screen site menu: a disclosure button that reveals the site links. */
-export function MobileNav({ links }: { links: MobileLink[] }) {
+/**
+ * Small-screen menu: a disclosure button that reveals the links.
+ * `trackActive` marks the current page (site pages); in-page anchor menus omit it.
+ */
+export function MobileNav({
+  links,
+  trackActive = false,
+  label = "Site",
+}: {
+  links: MobileLink[];
+  trackActive?: boolean;
+  label?: string;
+}) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -63,20 +76,28 @@ export function MobileNav({ links }: { links: MobileLink[] }) {
         hidden={!open}
         className="absolute inset-x-0 top-full border-b border-navy-line bg-navy shadow-[0_18px_30px_-18px_rgb(0_0_0/0.6)]"
       >
-        <nav aria-label="Site" className="container-site flex flex-col pb-3">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={link.active ? "page" : undefined}
-              onClick={() => setOpen(false)}
-              className={`flex min-h-12 items-center border-t border-navy-line font-display text-[0.8125rem] font-bold tracking-[0.08em] uppercase no-underline hover:text-on-navy ${
-                link.active ? "text-on-navy" : "text-on-navy-muted"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav aria-label={label} className="container-site flex flex-col pb-3">
+          {links.map((link) => {
+            const active = trackActive && pathname === link.href;
+            const className = `flex min-h-12 items-center border-t border-navy-line font-display text-[0.8125rem] font-bold tracking-[0.08em] uppercase no-underline hover:text-on-navy ${
+              active ? "text-on-navy" : "text-on-navy-muted"
+            }`;
+            return link.href.startsWith("#") ? (
+              <a key={link.href} href={link.href} onClick={() => setOpen(false)} className={className}>
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                onClick={() => setOpen(false)}
+                className={className}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </div>

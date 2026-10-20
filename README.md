@@ -1,13 +1,19 @@
 # Forge Capital Advisory website
 
-Marketing website for **Forge Capital Advisory**, the commercial real estate division of Big Think Capital. It has two pages:
+Marketing website for **Forge Capital Advisory**, the commercial real estate division of Big Think Capital. It has a multi-page company site and a standalone referral landing page:
 
-| Route       | Page                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------ |
-| `/`         | Company site: about, what we do, Forge IQ, deal process, team, partner program, roadmap, contact |
-| `/partners` | Forge Partners referral landing page for ISOs, brokers, agents, CPAs, attorneys and loan officers |
+| Route          | Page                                                                                   |
+| -------------- | -------------------------------------------------------------------------------------- |
+| `/`            | Home: hero, previews of each area with links, partner and contact call-outs            |
+| `/about`       | Who we are, the name, the problem, built to grow                                       |
+| `/what-we-do`  | Find / Structure / Place / Close, transaction types, deal process, who we work with    |
+| `/forge-iq`    | Forge IQ: example screen, Green / Yellow / Red, features                               |
+| `/team`        | Team                                                                                   |
+| `/partners`    | Partner program: steps, referral link, assurances                                      |
+| `/contact`     | Contact email card                                                                     |
+| `/refer`       | Standalone referral landing page for partners. It deliberately links nowhere else on the site: no site navigation, the logo is not a link, and the only outbound links are the application and the contact email. Share this URL with referral partners. |
 
-Built with Next.js (App Router), TypeScript and Tailwind CSS. Both pages are fully static: sections are server components, and only small client components ship JavaScript (mobile menu, copy-link and copy-email controls, scroll reveal).
+Built with Next.js (App Router), TypeScript and Tailwind CSS. Every page is fully static: sections are server components, and only small client components ship JavaScript (mobile menu, copy-link and copy-email controls, scroll reveal).
 
 ## Requirements
 
@@ -36,17 +42,18 @@ npm run dev          # http://localhost:3000
 | What                                                        | File                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Application URL, website link, contact email, navigation, header CTAs, page titles and descriptions | `src/config/site.ts` |
-| Home page copy                                              | `src/content/home.ts`                                        |
-| Partner page copy                                           | `src/content/partners.ts`                                    |
+| Company site copy (all site pages)                          | `src/content/home.ts`                                        |
+| Referral landing page copy (`/refer`)                       | `src/content/landing.ts`                                     |
 | Lender-eligibility disclaimer and copyright line            | `src/content/legal.ts`                                       |
 | Forge IQ sample deal and Green/Yellow/Red meanings          | `src/content/forge-iq.ts`                                    |
 | Brand colours, fonts, buttons, headline styles, motion      | `src/app/globals.css` (`@theme` tokens and component classes) |
 | Fonts (Barlow Condensed, Montserrat, Source Sans 3, self-hosted by `next/font`) | `src/app/layout.tsx`                      |
-| Home sections                                               | `src/components/home/*`                                      |
-| Partner page sections                                       | `src/components/partners/*`                                  |
+| Site pages and shared layout                                | `src/app/(site)/*` (each folder is a page; `layout.tsx` adds header and footer) |
+| Site sections                                               | `src/components/home/*`                                      |
+| Landing page and its header/footer                          | `src/app/(landing)/refer/page.tsx`, `src/components/landing/*` |
 | Shared header, footer, mobile menu, copy controls, Forge IQ preview | `src/components/site/*`                              |
 | Logos (gradient Forge symbol)                               | `public/brand/` and `src/components/ui/ForgeSymbol.tsx`      |
-| Favicon, Apple icon, social images                          | `src/app/icon.svg`, `favicon.ico`, `apple-icon.png`, `opengraph-image.png`; partner page image in `src/app/partners/` |
+| Favicon, Apple icon, social images                          | `src/app/icon.svg`, `favicon.ico`, `apple-icon.png`, `opengraph-image.png`; landing page image in `src/app/(landing)/refer/` |
 
 Notes:
 
@@ -83,8 +90,10 @@ references/               HTML prototypes (design reference only; not served).
                           "Forge Partners (updated).html" is the current partner page design.
 public/brand/             Optimised SVG logo assets
 src/app/                  Layout, page, metadata routes, icons, social image, global styles
-src/components/home/      Home page sections
-src/components/partners/  Partner page sections
+src/app/(site)/           Company site pages (shared header/footer in layout.tsx)
+src/app/(landing)/refer/  Standalone referral landing page
+src/components/home/      Company site sections
+src/components/landing/   Landing page sections, header and footer
 src/components/site/      Shared header, footer and client islands
 src/components/ui/        Shared primitives (logo symbol, section heading, reveal)
 src/config/site.ts        Business URLs, navigation and contact configuration

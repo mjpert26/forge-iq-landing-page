@@ -1,4 +1,4 @@
-import { howItWorks } from "@/content/partners";
+import { howItWorks } from "@/content/landing";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 

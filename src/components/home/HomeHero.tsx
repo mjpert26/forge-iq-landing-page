@@ -34,9 +34,9 @@ export function HomeHero() {
             {homeHero.lead}
           </p>
           <div className="stagger-in mt-8 flex flex-wrap gap-3" style={i(4)}>
-            <a href={homeHero.primaryCta.href} className="btn btn-orange">
+            <Link href={homeHero.primaryCta.href} className="btn btn-orange">
               {homeHero.primaryCta.label}
-            </a>
+            </Link>
             <Link href={homeHero.secondaryCta.href} className="btn btn-ghost">
               {homeHero.secondaryCta.label}
             </Link>

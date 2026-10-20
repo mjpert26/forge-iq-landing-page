@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { referral } from "@/content/partners";
+import { referral } from "@/content/landing";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CopyLink } from "@/components/site/CopyLink";

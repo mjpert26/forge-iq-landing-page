@@ -9,6 +9,7 @@ export function OrangeCell({
   tone = "light",
   number,
   as,
+  level = "h3",
 }: {
   title: string;
   body: string;
@@ -16,7 +17,10 @@ export function OrangeCell({
   tone?: "light" | "dark";
   number?: string;
   as?: "div" | "li";
+  /** Heading level for the cell title; h2 when the cell sits directly under a page h1. */
+  level?: "h2" | "h3";
 }) {
+  const Title = level;
   return (
     <Reveal as={as} index={index} className="min-w-0 border-t-4 border-orange pt-[1.125rem]">
       {number ? (
@@ -24,22 +28,28 @@ export function OrangeCell({
           {number}
         </span>
       ) : null}
-      <h3 className="headline headline-lg mb-2.5">{title}</h3>
+      <Title className="headline headline-lg mb-2.5">{title}</Title>
       <p className={tone === "dark" ? "text-on-navy-muted" : "text-muted"}>{body}</p>
     </Reveal>
   );
 }
 
-export function About() {
+/** Dedicated / Backed / Connected. With `withHead` it carries its own h2 (home page). */
+export function About({ withHead = false, more }: { withHead?: boolean; more?: React.ReactNode }) {
   return (
-    <section id="about" aria-labelledby="about-title" className="py-14 nav:py-[4.5rem]">
+    <section
+      aria-labelledby={withHead ? "about-title" : undefined}
+      aria-label={withHead ? undefined : "Who we are"}
+      className="py-14 nav:py-[4.5rem]"
+    >
       <div className="container-site">
-        <SiteSectionHead id="about-title" eyebrow={about.eyebrow} title={about.title} intro={about.intro} />
-        <div className="mt-10 grid gap-x-7 gap-y-8 nav:grid-cols-3">
+        {withHead ? <SiteSectionHead id="about-title" eyebrow={about.eyebrow} title={about.title} intro={about.intro} /> : null}
+        <div className={`grid gap-x-7 gap-y-8 nav:grid-cols-3 ${withHead ? "mt-10" : ""}`}>
           {about.pillars.map((item, index) => (
-            <OrangeCell key={item.title} index={index} {...item} />
+            <OrangeCell key={item.title} index={index} level={withHead ? "h3" : "h2"} {...item} />
           ))}
         </div>
+        {more ? <div className="mt-8">{more}</div> : null}
       </div>
     </section>
   );
@@ -47,7 +57,7 @@ export function About() {
 
 export function TheName() {
   return (
-    <section id="name" aria-labelledby="name-title" className="border-y border-line bg-paper py-14 nav:py-[4.5rem]">
+    <section aria-labelledby="name-title" className="border-y border-line bg-paper py-14 nav:py-[4.5rem]">
       <div className="container-site grid items-center gap-12 nav:grid-cols-2">
         <div>
           <h2 id="name-title" className="eyebrow !tracking-[0.18em]">

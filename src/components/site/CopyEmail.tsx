@@ -6,7 +6,7 @@ import { copyText, selectContents } from "@/lib/clipboard";
 type Status = "idle" | "copied" | "failed";
 
 /** Contact-card email with copy and mail actions. */
-export function CopyEmail({ email, label, hint }: { email: string; label: string; hint: string }) {
+export function CopyEmail({ email, label, hint }: { email: string; label: string; hint?: string }) {
   const emailRef = useRef<HTMLParagraphElement>(null);
   const [local, domain] = email.split("@");
   const [status, setStatus] = useState<Status>("idle");
@@ -55,7 +55,7 @@ export function CopyEmail({ email, label, hint }: { email: string; label: string
           </span>
         ) : null}
       </p>
-      <p className="mt-3.5 text-sm text-on-navy-muted">{hint}</p>
+      {hint ? <p className="mt-3.5 text-sm text-on-navy-muted">{hint}</p> : null}
     </div>
   );
 }

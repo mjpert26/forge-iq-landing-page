@@ -4,7 +4,7 @@ import { SiteSectionHead } from "@/components/ui/Headline";
 export function DealProcess() {
   const last = dealProcess.stages.length - 1;
   return (
-    <section id="process" aria-labelledby="process-title" className="border-y border-line bg-paper py-14 nav:py-[4.5rem]">
+    <section aria-labelledby="process-title" className="border-y border-line bg-paper py-14 nav:py-[4.5rem]">
       <div className="container-site">
         <SiteSectionHead
           id="process-title"

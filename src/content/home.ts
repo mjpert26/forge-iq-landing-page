@@ -4,7 +4,7 @@ export const homeHero = {
   eyebrow: "Commercial real estate",
   headline: { lead: "Deals aren’t found.", accent: "They’re forged." },
   lead: "Forge Capital Advisory is Big Think Capital’s commercial real estate division. We shape every deal to hold up under pressure, and our deal-placement engine, Forge IQ, matches it to the right lender.",
-  primaryCta: { href: "#contact", label: "Start a deal" },
+  primaryCta: { href: "/contact", label: "Start a deal" },
   secondaryCta: { href: "/partners", label: "Refer a client" },
 };
 
@@ -246,5 +246,7 @@ export const contact = {
   title: { lead: "Let’s forge", accent: "your next deal." },
   intro: "Tell us about the property and the ask. You’ll hear back from a person, not a portal.",
   cardLabel: "Email the team",
-  hint: "Referral partners can send clients straight to the application above.",
+  hint: "",
+  partnerTitle: "Referring a client?",
+  partnerBody: "Referral partners can send clients straight to the application.",
 };

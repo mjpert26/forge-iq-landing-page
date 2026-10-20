@@ -39,7 +39,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${sourceSans.variable} ${barlow.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${montserrat.variable} ${sourceSans.variable} ${barlow.variable}`}>
       <body>{children}</body>
     </html>
   );

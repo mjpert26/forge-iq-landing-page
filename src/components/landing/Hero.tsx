@@ -1,4 +1,4 @@
-import { hero } from "@/content/partners";
+import { hero } from "@/content/landing";
 import { ForgeSymbol } from "@/components/ui/ForgeSymbol";
 
 const i = (n: number) => ({ "--i": n }) as React.CSSProperties;

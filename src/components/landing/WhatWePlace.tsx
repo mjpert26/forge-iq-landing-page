@@ -1,4 +1,4 @@
-import { whatWePlace } from "@/content/partners";
+import { whatWePlace } from "@/content/landing";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 

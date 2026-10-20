@@ -27,47 +27,84 @@ export const siteConfig = {
     href: "https://forgecapitaladvisory.com",
   },
 
-  /** Contact email used in the contact card and footer. Set to null to hide email links. */
+  /** Contact email used on the contact page, footers and the referral landing page. */
   contactEmail: "hello@forgecapitaladvisory.com" as string | null,
-} as const;
-
-/** Per-page titles and descriptions. */
-export const pageMeta = {
-  home: {
-    title: "Forge Capital Advisory · Commercial real estate capital",
-    description:
-      "Forge Capital Advisory is Big Think Capital’s commercial real estate division. We structure each deal and use Forge IQ to place it with the right lender.",
-  },
-  partners: {
-    title: "Forge Partners · Refer a commercial real estate deal",
-    description:
-      "Forge Capital Advisory places commercial real estate deals through direct lender relationships. Refer a client, screen the deal in Forge IQ, and send them the application.",
-  },
 } as const;
 
 export type NavLink = { href: string; label: string };
 
 /** Main site navigation (header, mobile menu and footer). */
 export const siteNav: NavLink[] = [
-  { href: "/#about", label: "About" },
-  { href: "/#what", label: "What we do" },
-  { href: "/#iq", label: "Forge IQ" },
-  { href: "/#team", label: "Team" },
+  { href: "/about", label: "About" },
+  { href: "/what-we-do", label: "What we do" },
+  { href: "/forge-iq", label: "Forge IQ" },
+  { href: "/team", label: "Team" },
   { href: "/partners", label: "Partners" },
 ];
 
-export const contactLink: NavLink = { href: "/#contact", label: "Contact" };
+export const contactLink: NavLink = { href: "/contact", label: "Contact" };
 
-/** Header call to action per page. */
-export const headerCta = {
-  home: { href: "#contact", label: "Start a deal" },
-  partners: { href: "#refer", label: "Refer a deal" },
-} as const;
+/** Header call to action on every site page. */
+export const siteCta: NavLink = { href: "/contact", label: "Start a deal" };
 
-/** In-page links shown on the partner page below the hero. */
-export const partnerSectionNav: NavLink[] = [
-  { href: "#place", label: "What we place" },
-  { href: "#how", label: "How it works" },
+/**
+ * Standalone referral landing page. It has no links to other site pages:
+ * only in-page anchors and the external application link.
+ */
+export const landingPath = "/refer";
+export const landingNav: NavLink[] = [
+  { href: "#place", label: "What We Place" },
+  { href: "#how", label: "How It Works" },
   { href: "#iq", label: "Forge IQ" },
-  { href: "#refer", label: "Refer a deal" },
 ];
+export const landingCta: NavLink = { href: "#refer", label: "Refer a Deal" };
+
+/** Per-page titles and descriptions. */
+export const pageMeta = {
+  home: {
+    path: "/",
+    title: "Forge Capital Advisory · Commercial real estate capital",
+    description:
+      "Forge Capital Advisory is Big Think Capital’s commercial real estate division. We structure each deal and use Forge IQ to place it with the right lender.",
+  },
+  about: {
+    path: "/about",
+    title: "About · Forge Capital Advisory",
+    description:
+      "Forge is Big Think Capital’s commercial real estate division: dedicated specialists, the backing of Big Think Capital, and direct lender relationships.",
+  },
+  whatWeDo: {
+    path: "/what-we-do",
+    title: "What we do · Forge Capital Advisory",
+    description:
+      "Find, structure, place and close. Acquisition, refinance, cash-out and bridge capital for investment and owner-occupied commercial property.",
+  },
+  forgeIq: {
+    path: "/forge-iq",
+    title: "Forge IQ · Forge Capital Advisory",
+    description:
+      "Forge IQ, our deal-placement engine, scores a deal against the lender programs we place with and returns green, yellow or red.",
+  },
+  team: {
+    path: "/team",
+    title: "Team · Forge Capital Advisory",
+    description: "The Forge Capital Advisory team: commercial real estate, operations and processing.",
+  },
+  partners: {
+    path: "/partners",
+    title: "Partner program · Forge Capital Advisory",
+    description:
+      "ISOs, brokers, agents, CPAs, attorneys and loan officers: refer commercial real estate deals to Forge and get updates until they fund.",
+  },
+  contact: {
+    path: "/contact",
+    title: "Contact · Forge Capital Advisory",
+    description: "Tell us about the property and the ask. You’ll hear back from a person, not a portal.",
+  },
+  refer: {
+    path: landingPath,
+    title: "Forge Partners · Refer a commercial real estate deal",
+    description:
+      "Forge Capital Advisory places commercial real estate deals through direct lender relationships. Refer a client, screen the deal in Forge IQ, and send them the application.",
+  },
+} as const;

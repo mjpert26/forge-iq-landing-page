@@ -1,12 +1,13 @@
 import { siteConfig } from "@/config/site";
 import { contact, roadmap } from "@/content/home";
-import { Headline, SiteSectionHead } from "@/components/ui/Headline";
+import { SiteSectionHead } from "@/components/ui/Headline";
+import { MoreLink } from "@/components/ui/MoreLink";
 import { Reveal } from "@/components/ui/Reveal";
 import { CopyEmail } from "@/components/site/CopyEmail";
 
 export function Roadmap() {
   return (
-    <section id="growth" aria-labelledby="growth-title" className="py-14 nav:py-[4.5rem]">
+    <section aria-labelledby="growth-title" className="py-14 nav:py-[4.5rem]">
       <div className="container-site">
         <SiteSectionHead id="growth-title" eyebrow={roadmap.eyebrow} title={roadmap.title} />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -33,22 +34,21 @@ export function Roadmap() {
   );
 }
 
-export function Contact() {
+/** Contact card section for /contact (the page h1 is in the page header). */
+export function ContactCard() {
   return (
-    <section id="contact" aria-labelledby="contact-title" className="border-t border-line bg-paper">
-      <div className="container-site grid items-center gap-10 py-14 nav:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] nav:py-20">
-        <div>
-          <p className="eyebrow !tracking-[0.18em]">{contact.eyebrow}</p>
-          <Headline
-            text={contact.title}
-            id="contact-title"
-            className="mt-3 text-[clamp(3rem,1.6rem+5.4vw,5.5rem)] !leading-[0.92]"
-          />
-          <p className="mt-4 max-w-[40em] text-[1.1875rem] text-muted">{contact.intro}</p>
-        </div>
+    <section aria-label="Email the team" className="py-14 nav:py-[4.5rem]">
+      <div className="container-site grid items-start gap-10 nav:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         {siteConfig.contactEmail ? (
           <CopyEmail email={siteConfig.contactEmail} label={contact.cardLabel} hint={contact.hint} />
         ) : null}
+        <div className="border-t-4 border-orange pt-[1.125rem]">
+          <h2 className="headline headline-lg">{contact.partnerTitle}</h2>
+          <p className="mt-2.5 text-muted">{contact.partnerBody}</p>
+          <div className="mt-4">
+            <MoreLink href="/partners" label="Partner program" />
+          </div>
+        </div>
       </div>
     </section>
   );
