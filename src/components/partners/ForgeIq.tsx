@@ -1,8 +1,8 @@
-import { forgeIq } from "@/content/page";
+import { forgeIq } from "@/content/partners";
 import { sampleScreen, verdictMeaning, type Verdict } from "@/content/forge-iq";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ForgeIqPreview, SignalDot } from "./ForgeIqPreview";
+import { ForgeIqPreview, SignalDot } from "@/components/site/ForgeIqPreview";
 
 const order: Verdict[] = ["green", "yellow", "red"];
 

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Montserrat, Source_Sans_3 } from "next/font/google";
-import { siteConfig } from "@/config/site";
+import { pageMeta, siteConfig } from "@/config/site";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -16,7 +16,7 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 const barlow = Barlow_Condensed({
-  weight: ["600", "700"],
+  weight: ["600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-barlow",
   display: "swap",
@@ -24,23 +24,11 @@ const barlow = Barlow_Condensed({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: siteConfig.title,
-  description: siteConfig.description,
+  title: pageMeta.home.title,
+  description: pageMeta.home.description,
   applicationName: siteConfig.name,
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    url: "/",
-    siteName: siteConfig.name,
-    title: siteConfig.title,
-    description: siteConfig.description,
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
-  },
+  openGraph: { type: "website", siteName: siteConfig.name, locale: "en_US" },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

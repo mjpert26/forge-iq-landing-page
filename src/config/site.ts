@@ -1,6 +1,6 @@
 /**
- * Central business configuration. Update URLs and contact details here;
- * every section reads from this file.
+ * Central business configuration. Update URLs, navigation and contact details
+ * here; every page and section reads from this file.
  */
 
 function resolveSiteUrl(): string {
@@ -14,10 +14,7 @@ function resolveSiteUrl(): string {
 export const siteConfig = {
   /** Canonical origin. Set NEXT_PUBLIC_SITE_URL in Vercel once the domain is final. */
   url: resolveSiteUrl(),
-  name: "Forge Partners",
-  title: "Forge Partners · Refer a commercial real estate deal",
-  description:
-    "Forge Capital Advisory places commercial real estate deals through direct lender relationships. Refer a client, screen the deal in Forge IQ, and send them the application.",
+  name: "Forge Capital Advisory",
   company: "Forge Capital Advisory",
   parentCompany: "Big Think Capital",
   tagline: "A Big Think Capital Company",
@@ -30,14 +27,47 @@ export const siteConfig = {
     href: "https://forgecapitaladvisory.com",
   },
 
-  /** Partner contact email shown in the footer. Set to null to hide the email link. */
+  /** Contact email used in the contact card and footer. Set to null to hide email links. */
   contactEmail: "hello@forgecapitaladvisory.com" as string | null,
 } as const;
 
-export const navLinks = [
-  { href: "#place", label: "What We Place" },
-  { href: "#how", label: "How It Works" },
-  { href: "#iq", label: "Forge IQ" },
-] as const;
+/** Per-page titles and descriptions. */
+export const pageMeta = {
+  home: {
+    title: "Forge Capital Advisory · Commercial real estate capital",
+    description:
+      "Forge Capital Advisory is Big Think Capital’s commercial real estate division. We structure each deal and use Forge IQ to place it with the right lender.",
+  },
+  partners: {
+    title: "Forge Partners · Refer a commercial real estate deal",
+    description:
+      "Forge Capital Advisory places commercial real estate deals through direct lender relationships. Refer a client, screen the deal in Forge IQ, and send them the application.",
+  },
+} as const;
 
-export const referCta = { href: "#refer", label: "Refer a Deal" } as const;
+export type NavLink = { href: string; label: string };
+
+/** Main site navigation (header, mobile menu and footer). */
+export const siteNav: NavLink[] = [
+  { href: "/#about", label: "About" },
+  { href: "/#what", label: "What we do" },
+  { href: "/#iq", label: "Forge IQ" },
+  { href: "/#team", label: "Team" },
+  { href: "/partners", label: "Partners" },
+];
+
+export const contactLink: NavLink = { href: "/#contact", label: "Contact" };
+
+/** Header call to action per page. */
+export const headerCta = {
+  home: { href: "#contact", label: "Start a deal" },
+  partners: { href: "#refer", label: "Refer a deal" },
+} as const;
+
+/** In-page links shown on the partner page below the hero. */
+export const partnerSectionNav: NavLink[] = [
+  { href: "#place", label: "What we place" },
+  { href: "#how", label: "How it works" },
+  { href: "#iq", label: "Forge IQ" },
+  { href: "#refer", label: "Refer a deal" },
+];

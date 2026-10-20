@@ -102,7 +102,3 @@ export const referral = {
     },
   ],
 };
-
-/** Supplied lender-eligibility disclaimer. Keep verbatim. */
-export const disclaimer =
-  "Forge Capital Advisory is a real estate capital advisory division of Big Think Capital. Program availability, loan terms and eligibility are determined by the placing lender and vary by property, market and borrower. Nothing on this page is a commitment to lend.";

@@ -1,8 +1,8 @@
 import { siteConfig } from "@/config/site";
-import { referral } from "@/content/page";
+import { referral } from "@/content/partners";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { CopyLink } from "./CopyLink";
+import { CopyLink } from "@/components/site/CopyLink";
 
 export function ReferDeal() {
   return (

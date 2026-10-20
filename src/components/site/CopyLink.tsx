@@ -1,26 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { copyText } from "@/lib/clipboard";
 
 type Status = "idle" | "copied" | "failed";
-
-async function writeToClipboard(text: string, input: HTMLInputElement): Promise<boolean> {
-  if (navigator.clipboard?.writeText && window.isSecureContext) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch {
-      // Fall through to the legacy path below.
-    }
-  }
-  try {
-    input.focus();
-    input.select();
-    return document.execCommand("copy");
-  } catch {
-    return false;
-  }
-}
 
 export function CopyLink({ url, inputId }: { url: string; inputId: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,7 +16,7 @@ export function CopyLink({ url, inputId }: { url: string; inputId: string }) {
     const input = inputRef.current;
     if (!input) return;
     window.clearTimeout(timer.current);
-    const ok = await writeToClipboard(url, input);
+    const ok = await copyText(url, input);
     if (ok) {
       setStatus("copied");
       timer.current = window.setTimeout(() => setStatus("idle"), 4000);

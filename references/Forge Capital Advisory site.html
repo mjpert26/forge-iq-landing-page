@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Forge Capital Advisory</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+  /* Layout: a full marketing site built on the partner page's system. Navy bands carry the thesis sections (hero, problem, Forge IQ, partners), paper bands carry the working content (what we do, team, roadmap). Headlines set in heavy condensed caps like the deck; body set plain. */
+  :root {
+    --bg: #f5f7f9;
+    --paper: #ffffff;
+    --fg: #0A1628;
+    --muted: #5b6b82;
+    --line: #d9e0e8;
+    --navy: #0A1628;
+    --navy-deep: #061020;
+    --navy-card: #0f213a;
+    --on-navy: #f1f5f9;
+    --on-navy-muted: #a9b9cc;
+    --on-navy-line: #1f3350;
+    --orange: #F26B1D;
+    --orange-ink: #d85a10;
+    --blue: #1565C0;
+    --green: #2e9d5b;
+    --yellow: #d9a21b;
+    --red: #cf3a3a;
+    --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    --label: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1626; --paper: #122238; --fg: #e8eef5; --muted: #9fb0c4; --line: #24364d;
+      --navy: #0A1628; --navy-deep: #061020; --navy-card: #0f213a; --on-navy: #f1f5f9; --on-navy-muted: #a9b9cc; --on-navy-line: #1f3350;
+      --orange: #FF8A47; --orange-ink: #FF8A47; --blue: #6AA8F0; --green: #4cbf7a; --yellow: #e2b23a; --red: #e05757;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1626; --paper: #122238; --fg: #e8eef5; --muted: #9fb0c4; --line: #24364d;
+    --navy: #0A1628; --navy-deep: #061020; --navy-card: #0f213a; --on-navy: #f1f5f9; --on-navy-muted: #a9b9cc; --on-navy-line: #1f3350;
+    --orange: #FF8A47; --orange-ink: #FF8A47; --blue: #6AA8F0; --green: #4cbf7a; --yellow: #e2b23a; --red: #e05757;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55; margin: 0; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--navy); }
+  a { color: var(--blue); }
+  h1, h2, h3, h4 { font-family: var(--display); line-height: 1; margin: 0; text-wrap: balance; text-transform: uppercase; letter-spacing: 0.005em; }
+  h2 { font-size: clamp(38px, 5.4vw, 64px); font-weight: 800; }
+  h3 { font-size: clamp(26px, 3vw, 34px); font-weight: 800; }
+  h4 { font-size: 22px; font-weight: 700; }
+  h2 em, h1 em { font-style: normal; color: var(--orange); }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .eyebrow { font-family: var(--label); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); }
+  .band-navy .eyebrow, .hero .eyebrow { color: var(--orange); }
+  .intro { max-width: 40em; margin-top: 16px; color: var(--muted); font-size: 19px; }
+  .band-navy .intro { color: var(--on-navy-muted); }
+  .section-head { max-width: 50em; }
+  .section-head h2 { margin-top: 12px; }
+
+  /* Buttons */
+  .btn { display: inline-block; font-family: var(--label); font-weight: 700; font-size: 14px; letter-spacing: 0.04em; text-decoration: none; padding: 12px 20px; border-radius: 4px; border: 1.5px solid transparent; white-space: nowrap; cursor: pointer; }
+  .btn:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .btn-orange { background: var(--orange); color: #0A1628; border-color: var(--orange); }
+  .btn-ghost { background: transparent; color: var(--on-navy); border-color: rgba(255,255,255,0.35); }
+  .btn-navy { background: var(--navy); color: #f1f5f9; border-color: var(--navy); }
+  .btn-outline { background: transparent; color: var(--fg); border-color: var(--line); }
+
+  /* Header */
+  header { background: var(--navy); color: var(--on-navy); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; border-bottom: 1px solid var(--on-navy-line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; min-width: 0; }
+  .brand svg { width: 36px; height: 36px; flex: none; }
+  .wordmark { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: 0.06em; line-height: 1; display: block; }
+  .tag { display: block; font-family: var(--label); font-size: 8.5px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--on-navy-muted); margin-top: 4px; }
+  .links { display: flex; gap: 26px; align-items: center; }
+  .links a { color: var(--on-navy-muted); text-decoration: none; font-family: var(--label); font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .links a:hover, .links a:focus-visible { color: var(--on-navy); outline: none; }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .menu-btn { display: none; background: transparent; border: 1.5px solid rgba(255,255,255,0.35); color: var(--on-navy); border-radius: 4px; width: 42px; height: 42px; cursor: pointer; }
+  .menu-btn svg { width: 22px; height: 22px; }
+  .mobile-links { display: none; }
+
+  /* Hero */
+  .hero { background: var(--navy); color: var(--on-navy); position: relative; overflow: hidden; }
+  .hero .wrap { padding-block: 72px 80px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; align-items: center; position: relative; }
+  .hero h1 { font-size: clamp(56px, 9vw, 112px); font-weight: 800; line-height: 0.92; }
+  .hero .lede { font-size: 20px; color: var(--on-navy-muted); max-width: 32em; margin-top: 24px; }
+  .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .mark-big { display: flex; justify-content: center; }
+  .mark-big svg { width: min(100%, 300px); height: auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35)); }
+  .hero-rule { height: 10px; background: var(--orange); }
+
+  /* Sections */
+  section { padding-block: 72px; }
+  .band-paper { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .band-navy { background: var(--navy-deep); color: var(--on-navy); }
+  .band-navy h2, .band-navy h3, .band-navy h4 { color: var(--on-navy); }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 28px; margin-top: 40px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 28px; margin-top: 40px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; margin-top: 40px; }
+  .cell { min-width: 0; border-top: 4px solid var(--orange); padding-top: 18px; }
+  .cell.bare { border-top: 0; padding-top: 0; }
+  .cell h3 { margin-bottom: 10px; }
+  .cell p { color: var(--muted); font-size: 17px; }
+  .band-navy .cell p { color: var(--on-navy-muted); }
+  .cell ul { margin-top: 10px; color: var(--muted); }
+  .band-navy .cell ul { color: var(--on-navy-muted); }
+  .cell li { padding: 7px 0; border-bottom: 1px solid var(--line); }
+  .band-navy .cell li { border-color: var(--on-navy-line); }
+  .cell li:last-child { border-bottom: 0; }
+  .num { display: block; font-family: var(--display); font-weight: 800; font-size: 52px; line-height: 1; color: var(--orange); margin-bottom: 6px; }
+
+  /* Name section */
+  .name-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .name-big { font-family: var(--display); font-weight: 800; font-size: clamp(96px, 16vw, 200px); line-height: 0.85; text-transform: uppercase; display: flex; align-items: flex-end; gap: 6px; }
+  .name-big .sq { display: inline-block; width: 0.22em; height: 0.22em; background: var(--blue); margin-bottom: 0.02em; }
+  .name-def { font-family: var(--label); font-weight: 800; font-size: clamp(24px, 2.8vw, 32px); line-height: 1.2; margin-top: 8px; }
+  .name-block .intro { margin-top: 18px; }
+
+  /* Problem */
+  .fix { display: inline-flex; align-items: center; gap: 12px; margin-top: 48px; font-family: var(--display); font-weight: 800; font-size: clamp(34px, 4.5vw, 52px); text-transform: uppercase; line-height: 1; }
+  .fix .chev { color: var(--orange); }
+
+  /* Forge IQ */
+  .iq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 40px; align-items: start; margin-top: 44px; }
+  .screen { background: var(--paper); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
+  .screen-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--navy); color: #f1f5f9; font-family: var(--label); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .screen-bar span:last-child { color: #a9b9cc; font-weight: 500; letter-spacing: 0.08em; }
+  .screen-body { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  .fields { padding: 16px; display: grid; gap: 10px; border-right: 1px solid var(--line); }
+  .field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  .field div { border: 1px solid var(--line); border-radius: 4px; padding: 7px 10px; font-size: 14px; background: var(--bg); }
+  .verdict { display: grid; place-items: center; align-content: center; padding: 16px; gap: 10px; text-align: center; }
+  .light { width: 92px; height: 92px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 10px color-mix(in srgb, var(--green) 18%, transparent); }
+  .verdict strong { font-family: var(--label); font-weight: 800; font-size: 20px; letter-spacing: 0.1em; color: var(--green); }
+  .verdict small { color: var(--muted); font-size: 13px; }
+  .features { display: grid; gap: 0; }
+  .feature { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 16px; align-items: start; padding: 20px 0; border-top: 1px solid var(--on-navy-line); }
+  .feature:last-child { border-bottom: 1px solid var(--on-navy-line); }
+  .feature .chev { color: var(--orange); font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; }
+  .feature p { color: var(--on-navy-muted); margin-top: 4px; }
+  .outcomes { display: grid; gap: 14px; margin-top: 28px; }
+  .outcome { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 12px; align-items: start; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; margin-top: 6px; }
+  .outcome strong { font-family: var(--label); font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  .outcome p { color: var(--on-navy-muted); font-size: 16px; margin-top: 2px; }
+
+  /* Process rail */
+  .rail { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; margin-top: 44px; background: var(--navy); color: #f1f5f9; padding: 24px 8px; border-radius: 6px; }
+  .rail .stage { min-width: 0; padding: 8px 16px; position: relative; }
+  .rail .stage + .stage::before { content: "›"; position: absolute; left: -6px; top: 8px; color: var(--orange); font-family: var(--display); font-weight: 800; font-size: 40px; line-height: 1; }
+  .rail .n { display: block; font-family: var(--display); font-weight: 800; font-size: 40px; color: var(--orange); line-height: 1; }
+  .rail .stage:last-child .n { color: #f1f5f9; }
+  .rail h4 { color: #f1f5f9; margin-top: 4px; font-size: 26px; }
+  .rail .stage:last-child h4 { color: var(--orange); }
+  .rail p { color: #a9b9cc; font-size: 15px; margin-top: 6px; }
+
+  /* Partner steps */
+  .steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 24px; margin-top: 40px; border-top: 2px solid var(--on-navy-line); }
+  .step { min-width: 0; padding: 20px 0 0; }
+  .step::before { counter-increment: step; content: counter(step, decimal-leading-zero); font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--orange); letter-spacing: 0.04em; display: block; margin-bottom: 8px; }
+  .step h4 { font-size: 24px; }
+  .step p { color: var(--on-navy-muted); font-size: 16px; margin-top: 6px; }
+  .who { display: inline-block; font-family: var(--label); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 7px; border-radius: 3px; margin-top: 12px; background: var(--orange); color: #0A1628; }
+  .who.us { background: var(--blue); color: #f1f5f9; }
+
+  /* Referral */
+  .refer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 40px; }
+  .linkbox { background: var(--paper); color: var(--fg); border-radius: 8px; padding: 22px; }
+  .linkbox label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .linkrow { display: flex; gap: 8px; align-items: stretch; }
+  .linkrow input { flex: 1 1 auto; min-width: 0; font: 600 15px/1.3 var(--body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; }
+  .linkrow button { flex: none; font-family: var(--label); font-weight: 700; font-size: 13px; letter-spacing: 0.04em; background: var(--orange); color: #0A1628; border: 0; border-radius: 4px; padding: 0 16px; cursor: pointer; }
+  .linkrow button:focus-visible, .linkrow input:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .linkbox .note { font-size: 15px; color: var(--muted); margin-top: 12px; }
+  .linkbox .open { margin-top: 16px; }
+  .rules { display: grid; gap: 22px; }
+  .rule h4 { font-size: 24px; }
+  .rule p { color: var(--on-navy-muted); font-size: 16px; margin-top: 4px; }
+
+  /* Team */
+  .team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 28px; margin-top: 40px; }
+  .person { min-width: 0; border-top: 6px solid var(--orange); padding-top: 18px; }
+  .person .role { font-family: var(--label); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); }
+  .person h3 { margin-top: 8px; font-size: clamp(30px, 3.2vw, 40px); }
+  .person p { color: var(--muted); margin-top: 10px; }
+
+  /* Roadmap */
+  .roadmap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+  .tile { min-width: 0; background: var(--navy-card); color: #f1f5f9; padding: 28px 28px 30px; border-radius: 4px; }
+  .tile.now { background: var(--orange); color: #0A1628; }
+  .tile .when { font-family: var(--label); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); }
+  .tile.now .when { color: #0A1628; }
+  .tile h3 { margin-top: 10px; font-size: clamp(30px, 3.6vw, 44px); color: inherit; }
+  .tile p { margin-top: 10px; font-size: 16px; color: #a9b9cc; }
+  .tile.now p { color: #2b1a0e; }
+
+  /* Contact */
+  .contact { background: var(--paper); border-top: 1px solid var(--line); }
+  .contact .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 80px; }
+  .contact h2 { font-size: clamp(48px, 7vw, 88px); line-height: 0.92; }
+  .contact-card { background: var(--navy); color: #f1f5f9; border-radius: 8px; padding: 28px; }
+  .contact-card label { display: block; font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #a9b9cc; margin-bottom: 8px; }
+  .contact-card .email { font-family: var(--label); font-weight: 800; font-size: clamp(20px, 2.4vw, 26px); word-break: break-all; }
+  .contact-card .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .contact-card .btn-ghost { border-color: rgba(255,255,255,0.35); }
+  .contact-card .hint { font-size: 14px; color: #a9b9cc; margin-top: 14px; }
+
+  /* Footer */
+  footer { padding-block: 36px 44px; color: var(--muted); font-size: 14px; background: var(--bg); }
+  footer .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 24px 48px; align-items: start; }
+  footer .brand { color: var(--fg); }
+  footer .tag { color: var(--muted); }
+  footer p { max-width: 50em; }
+  footer .foot-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+  footer .foot-links a { color: var(--muted); text-decoration: none; font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  footer .foot-links a:hover { color: var(--fg); }
+
+  @media (max-width: 900px) {
+    .links { display: none; }
+    .menu-btn { display: inline-grid; place-items: center; }
+    .mobile-links.open { display: grid; gap: 0; padding-bottom: 12px; }
+    .mobile-links a { color: var(--on-navy-muted); text-decoration: none; font-family: var(--label); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 0; border-top: 1px solid var(--on-navy-line); }
+    .hero .wrap { grid-template-columns: 1fr; padding-block: 48px 56px; }
+    .mark-big { order: -1; justify-content: flex-start; }
+    .mark-big svg { width: 120px; }
+    .grid-3, .grid-2, .grid-4, .iq, .refer, .name-block, .team, .contact .wrap, footer .wrap { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .rail { grid-template-columns: 1fr; gap: 6px; padding: 8px 16px; }
+    .rail .stage { padding: 14px 0; border-top: 1px solid var(--on-navy-line); }
+    .rail .stage:first-child { border-top: 0; }
+    .rail .stage + .stage::before { content: none; }
+    section { padding-block: 56px; }
+  }
+  @media (max-width: 560px) {
+    .steps, .roadmap { grid-template-columns: 1fr; }
+    .screen-body { grid-template-columns: 1fr; }
+    .fields { border-right: 0; border-bottom: 1px solid var(--line); }
+    .nav .btn { padding: 9px 12px; font-size: 13px; }
+    .hero h1 { font-size: clamp(52px, 14vw, 72px); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn, .linkrow button { transition: filter .15s ease, transform .15s ease; }
+    .btn:hover, .linkrow button:hover { filter: brightness(1.08); }
+    .btn-orange:hover { transform: translateY(-1px); }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F9A040"/><stop offset="1" stop-color="#F26B1D"/></linearGradient>
+    <linearGradient id="g-stem" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F26B1D"/><stop offset="0.3" stop-color="#C75A39"/><stop offset="0.5" stop-color="#636696"/><stop offset="0.66" stop-color="#1B6FDD"/><stop offset="1" stop-color="#0C47A0"/></linearGradient>
+    <linearGradient id="g-arm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1E88E5"/><stop offset="1" stop-color="#0C47A0"/></linearGradient>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="Forge Capital Advisory, a Big Think Capital company">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475 612"><rect x="25" y="2" width="423" height="17" fill="#FDD27A"/><path d="M25 18 L448 18 L462 127 L11 127 Z" fill="url(#g-beam)"/><rect x="11" y="126" width="127" height="481" fill="url(#g-stem)"/><path d="M288 126 Q288 172 315 210 Q342 172 342 126 Z" fill="#F26B1D"/><circle cx="315" cy="246" r="15" fill="#F26B1D"/><path d="M138 283 L342 283 L357 391 L138 391 Z" fill="url(#g-arm)"/></svg>
+        <span><span class="wordmark">FORGE</span><span class="tag">Capital Advisory · A Big Think Capital Company</span></span>
+      </a>
+      <nav class="links" aria-label="Site">
+        <a href="#about">About</a>
+        <a href="#what">What we do</a>
+        <a href="#iq">Forge IQ</a>
+        <a href="#team">Team</a>
+        <a href="#partners">Partners</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn btn-orange" href="#contact">Start a deal</a>
+        <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-links" id="mobile-links" aria-label="Site, mobile">
+      <a href="#about">About</a>
+      <a href="#what">What we do</a>
+      <a href="#iq">Forge IQ</a>
+      <a href="#team">Team</a>
+      <a href="#partners">Partners</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Commercial real estate</p>
+      <h1 style="margin-top: 16px;">Deals aren't found. <em>They're forged.</em></h1>
+      <p class="lede">Forge Capital Advisory is Big Think Capital's commercial real estate division. We shape every deal to hold up under pressure, and our deal-placement engine, Forge IQ, matches it to the right lender.</p>
+      <div class="cta">
+        <a class="btn btn-orange" href="#contact">Start a deal</a>
+        <a class="btn btn-ghost" href="#partners">Refer a client</a>
+      </div>
+    </div>
+    <div class="mark-big" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475 612"><rect x="25" y="2" width="423" height="17" fill="#FDD27A"/><path d="M25 18 L448 18 L462 127 L11 127 Z" fill="url(#g-beam)"/><rect x="11" y="126" width="127" height="481" fill="url(#g-stem)"/><path d="M288 126 Q288 172 315 210 Q342 172 342 126 Z" fill="#F26B1D"/><circle cx="315" cy="246" r="15" fill="#F26B1D"/><path d="M138 283 L342 283 L357 391 L138 391 Z" fill="url(#g-arm)"/></svg>
+    </div>
+  </div>
+</section>
+<div class="hero-rule" aria-hidden="true"></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Who we are</p>
+      <h2>Big Think Capital's commercial real estate division. <em>Built to execute.</em></h2>
+      <p class="intro">Big Think Capital is a national small-business lender with more than a decade of working capital behind it. Forge brings that execution discipline to commercial property.</p>
+    </div>
+    <div class="grid-3">
+      <div class="cell">
+        <h3>Dedicated</h3>
+        <p>Specialists who own every deal, start to finish. One coordinator, one point of contact, no handoffs you have to chase.</p>
+      </div>
+      <div class="cell">
+        <h3>Backed</h3>
+        <p>The reputation and platform of Big Think Capital: underwriting, processing and a lender network built over years of funding small businesses.</p>
+      </div>
+      <div class="cell">
+        <h3>Connected</h3>
+        <p>Forge IQ matches every deal to the right lender. Direct relationships only, so you always know where the file went.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper" id="name">
+  <div class="wrap">
+    <div class="name-block">
+      <div>
+        <p class="eyebrow">The name</p>
+        <div class="name-big" style="margin-top: 12px;">Forge<span class="sq" aria-hidden="true"></span></div>
+      </div>
+      <div>
+        <p class="name-def">To shape under heat and pressure.</p>
+        <p class="intro">That's how great deals get made. Big Think Capital brings the ideas. Forge shapes them into deals built to last, with a lender behind each one who actually wants it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-navy" id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The problem</p>
+    <div class="grid-3" style="margin-top: 20px;">
+      <div class="cell">
+        <h3>Fragmented.</h3>
+        <p>Every lender has its own appetite, guidelines and terms. Knowing which one fits is most of the work.</p>
+      </div>
+      <div class="cell">
+        <h3>Slow.</h3>
+        <p>Owners and brokers wait weeks to learn if a deal fits, and the answer is often a no that could have come in a minute.</p>
+      </div>
+      <div class="cell">
+        <h3>Complex.</h3>
+        <p>The right capital stack takes real expertise. Most deals fail on structure, not on the property.</p>
+      </div>
+    </div>
+    <p class="fix">We fix all three <span class="chev" aria-hidden="true">›</span></p>
+  </div>
+</section>
+
+<section id="what">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What we do</p>
+      <h2>Find. Structure. Place. <em>Close.</em></h2>
+      <p class="intro">Four jobs, in order, on every file. Forge owns all of them.</p>
+    </div>
+    <div class="grid-4">
+      <div class="cell">
+        <span class="num">01</span>
+        <h3>Find.</h3>
+        <p>We source and qualify every opportunity, whether it comes from an owner, a broker or a referral partner.</p>
+      </div>
+      <div class="cell">
+        <span class="num">02</span>
+        <h3>Structure.</h3>
+        <p>We shape the deal to fit both lender and borrower: leverage, term, rate, and the story behind the numbers.</p>
+      </div>
+      <div class="cell">
+        <span class="num">03</span>
+        <h3>Place.</h3>
+        <p>We match it to the right lender through Forge IQ and our direct relationships. No super-broker chains.</p>
+      </div>
+      <div class="cell">
+        <span class="num">04</span>
+        <h3>Close.</h3>
+        <p>We drive underwriting to funding, clearing documents and conditions until the wire lands.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 64px;">
+      <div class="cell">
+        <h3>Transaction types</h3>
+        <ul>
+          <li>Acquisition</li>
+          <li>Refinance, including cash-out</li>
+          <li>Bridge and short-term capital</li>
+          <li>Properties with existing debt in place</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <h3>Property use</h3>
+        <ul>
+          <li>Investment property leased to tenants</li>
+          <li>Owner-occupied, borrower-operated business</li>
+          <li>Mixed: borrower occupies a portion, leases the rest</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-navy" id="iq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Our deal-placement engine</p>
+      <h2>Forge <em>IQ.</em></h2>
+      <p class="intro">Forge IQ scores a deal against the lender programs we actually place with. A handful of questions about the property and the request, and you get a straight answer: green, yellow or red. No rent rolls, no financials, no waiting on a lender to call back.</p>
+    </div>
+    <div class="iq">
+      <div>
+        <div class="screen" aria-label="Forge IQ quick screen, example">
+          <div class="screen-bar"><span>Forge IQ · Quick Screen</span><span>Example</span></div>
+          <div class="screen-body">
+            <div class="fields">
+              <div class="field"><label>Transaction type</label><div>Acquisition</div></div>
+              <div class="field"><label>Property use</label><div>Investment, leased to tenants</div></div>
+              <div class="field"><label>Property type</label><div>Multifamily, 12 units</div></div>
+              <div class="field"><label>Existing debt on property</label><div>None</div></div>
+              <div class="field"><label>Requested amount</label><div>$1,850,000</div></div>
+            </div>
+            <div class="verdict">
+              <div class="light" aria-hidden="true"></div>
+              <strong>GREEN</strong>
+              <small>Send the application. The Forge team takes it from here.</small>
+            </div>
+          </div>
+        </div>
+        <div class="outcomes">
+          <div class="outcome"><span class="dot" style="background: var(--green);"></span><div><strong>Green</strong><p>The deal fits a program. The application goes in with a document checklist already in hand.</p></div></div>
+          <div class="outcome"><span class="dot" style="background: var(--yellow);"></span><div><strong>Yellow</strong><p>Close, with questions. The Forge team reaches out for a few specifics before anything is submitted.</p></div></div>
+          <div class="outcome"><span class="dot" style="background: var(--red);"></span><div><strong>Red</strong><p>Not a fit today. You know in a minute, not in three weeks, and you can tell your client the truth.</p></div></div>
+        </div>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="chev" aria-hidden="true">›</span>
+          <div><h4>Guidelines built in</h4><p>Lender criteria in one screening tool. Appetite, property type, leverage and loan size, kept current as programs change.</p></div>
+        </div>
+        <div class="feature">
+          <span class="chev" aria-hidden="true">›</span>
+          <div><h4>Red / green screen</h4><p>A first read on fit, fast. You walk into the client conversation knowing where the deal stands.</p></div>
+        </div>
+        <div class="feature">
+          <span class="chev" aria-hidden="true">›</span>
+          <div><h4>Specialist escalation</h4><p>Exceptions go straight to our CRE expert. A yellow never sits in a queue.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How a deal moves</p>
+      <h2>Submit to close. <em>No guessing.</em></h2>
+      <p class="intro">Every file moves through the same five stages, and your coordinator tells you which one it's in. Updates on every lender action, and at least weekly even when nothing has moved.</p>
+    </div>
+    <div class="rail" aria-label="Deal stages">
+      <div class="stage"><span class="n">01</span><h4>Submit</h4><p>Opportunity captured.</p></div>
+      <div class="stage"><span class="n">02</span><h4>Qualify</h4><p>Goals and fit confirmed.</p></div>
+      <div class="stage"><span class="n">03</span><h4>Match</h4><p>Screened against lenders.</p></div>
+      <div class="stage"><span class="n">04</span><h4>Place</h4><p>Sent to best-fit lender.</p></div>
+      <div class="stage"><span class="n">05</span><h4>Close</h4><p>Driven to funding.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Who we work with</p>
+      <h2>Owners. Brokers. <em>Lenders.</em></h2>
+    </div>
+    <div class="grid-3">
+      <div class="cell">
+        <h3>Owners.</h3>
+        <p>Financing matched to your property and your plans, whether you're buying, refinancing, pulling cash out or bridging to the next move.</p>
+      </div>
+      <div class="cell">
+        <h3>Brokers.</h3>
+        <p>A placement partner that protects your relationships. Your client stays your client, and you get the updates.</p>
+      </div>
+      <div class="cell">
+        <h3>Lenders.</h3>
+        <p>Qualified, well-structured deal flow. Every file is screened against your guidelines before it reaches your desk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The team</p>
+      <h2>The people on <em>your file.</em></h2>
+    </div>
+    <div class="team">
+      <div class="person">
+        <p class="role">Commercial real estate</p>
+        <h3>Alex Klausner</h3>
+        <p>Owns transactions end to end: origination, structuring, placement and closing.</p>
+      </div>
+      <div class="person">
+        <p class="role">Operations</p>
+        <h3>Barb Weidner</h3>
+        <p>Builds the operating engine, with the execution discipline of BTC's core business.</p>
+      </div>
+      <div class="person">
+        <p class="role">Processing</p>
+        <h3>Maureen Guy</h3>
+        <p>Keeps every file moving, from documents and conditions through to closing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-navy" id="partners">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Partner program</p>
+      <h2>Your client needs CRE capital. <em>Send it to Forge.</em></h2>
+      <p class="intro">ISOs and brokers with business-owner clients. Commercial real estate agents. CPAs, attorneys and advisors. Mortgage and residential loan officers. If you have the relationship, we have the lender.</p>
+    </div>
+
+    <h3 style="margin-top: 56px;">Four steps. You own two of them.</h3>
+    <div class="steps">
+      <div class="step">
+        <h4>Screen it in Forge IQ</h4>
+        <p>A few fields on the property and the ask. Green, yellow or red in under a minute. No income or rent figures needed up front.</p>
+        <span class="who">You</span>
+      </div>
+      <div class="step">
+        <h4>Send your client the application</h4>
+        <p>One link. Your client completes the Forge real estate application and uploads documents directly.</p>
+        <span class="who">You</span>
+      </div>
+      <div class="step">
+        <h4>Forge runs the deal</h4>
+        <p>Our team takes it from submission through lender placement and closing. Nothing bounces back to you to chase.</p>
+        <span class="who us">Forge</span>
+      </div>
+      <div class="step">
+        <h4>You get the updates</h4>
+        <p>Your coordinator reaches out on every lender action, and at least weekly even when nothing has moved.</p>
+        <span class="who us">Forge</span>
+      </div>
+    </div>
+
+    <div class="refer">
+      <div class="linkbox">
+        <label for="ref-link">Referral link</label>
+        <div class="linkrow">
+          <input id="ref-link" type="text" readonly value="https://application.bigthinkcapital.com/real-estate">
+          <button type="button" id="copy-btn">Copy</button>
+        </div>
+        <p class="note" id="copy-note">Make sure your name goes in the referral source on the application so the deal is tagged to you from day one.</p>
+        <div class="open"><a class="btn btn-navy" href="https://application.bigthinkcapital.com/real-estate" target="_blank" rel="noopener">Open the application</a></div>
+      </div>
+      <div class="rules">
+        <div class="rule">
+          <h4>Your client stays your client.</h4>
+          <p>Forge works the deal directly with the lender. We never hand your client off to a third-party broker, and we never market to them behind your back.</p>
+        </div>
+        <div class="rule">
+          <h4>One point of contact.</h4>
+          <p>A Forge coordinator is assigned to every referred deal. You always know who to call and where the deal stands.</p>
+        </div>
+        <div class="rule">
+          <h4>Direct lender relationships only.</h4>
+          <p>We place with lenders we work with directly. No super-broker chains, no mystery about where the file went.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="growth">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Built to grow</p>
+      <h2>Commercial real estate first. <em>More on the way.</em></h2>
+    </div>
+    <div class="roadmap">
+      <div class="tile now">
+        <p class="when">Now ›</p>
+        <h3>Commercial real estate</h3>
+        <p>Acquisition, refinance, cash-out and bridge for investment and owner-occupied property.</p>
+      </div>
+      <div class="tile">
+        <p class="when">Next</p>
+        <h3>Residential lending</h3>
+        <p>Investor and owner residential capital through the same placement engine.</p>
+      </div>
+      <div class="tile">
+        <p class="when">Next</p>
+        <h3>Broker marketplace</h3>
+        <p>Forge IQ in your hands: screen, submit and track from one place.</p>
+      </div>
+      <div class="tile">
+        <p class="when">Next</p>
+        <h3>More to come</h3>
+        <p>Every product we add runs on the same promise: a fast answer and a lender who wants the deal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h2 style="margin-top: 12px;">Let's forge <em>your next deal.</em></h2>
+      <p class="intro">Tell us about the property and the ask. You'll hear back from a person, not a portal.</p>
+    </div>
+    <div class="contact-card">
+      <label for="email-text">Email the team</label>
+      <div class="email" id="email-text">hello@forge.com</div>
+      <div class="row">
+        <button class="btn btn-orange" type="button" id="copy-email">Copy email</button>
+        <a class="btn btn-ghost" href="mailto:hello@forge.com">Open in mail</a>
+      </div>
+      <p class="hint" id="email-note">Referral partners can send clients straight to the application above.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="Forge Capital Advisory">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475 612"><rect x="25" y="2" width="423" height="17" fill="#FDD27A"/><path d="M25 18 L448 18 L462 127 L11 127 Z" fill="url(#g-beam)"/><rect x="11" y="126" width="127" height="481" fill="url(#g-stem)"/><path d="M288 126 Q288 172 315 210 Q342 172 342 126 Z" fill="#F26B1D"/><circle cx="315" cy="246" r="15" fill="#F26B1D"/><path d="M138 283 L342 283 L357 391 L138 391 Z" fill="url(#g-arm)"/></svg>
+        <span><span class="wordmark">FORGE</span><span class="tag">Capital Advisory · A Big Think Capital Company</span></span>
+      </a>
+      <p style="margin-top: 14px;"><a href="https://forgecapitaladvisory.com" target="_blank" rel="noopener">forgecapitaladvisory.com</a></p>
+      <div class="foot-links">
+        <a href="#about">About</a>
+        <a href="#what">What we do</a>
+        <a href="#iq">Forge IQ</a>
+        <a href="#team">Team</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <p>Forge Capital Advisory is a real estate capital advisory division of Big Think Capital. Program availability, loan terms and eligibility are determined by the placing lender and vary by property, market and borrower. Nothing on this page is a commitment to lend. © 2026 Big Think Capital.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var menuBtn = document.getElementById('menu-btn');
+    var mobile = document.getElementById('mobile-links');
+    menuBtn.addEventListener('click', function () {
+      var open = mobile.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { mobile.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
+    });
+
+    function copier(btnId, getText, noteId, okMsg, fallbackSelect) {
+      var btn = document.getElementById(btnId);
+      var note = document.getElementById(noteId);
+      var original = note.textContent;
+      var label = btn.textContent;
+      function done(msg) {
+        btn.textContent = 'Copied';
+        note.textContent = msg;
+        setTimeout(function () { btn.textContent = label; note.textContent = original; }, 2500);
+      }
+      btn.addEventListener('click', function () {
+        var text = getText();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { done(okMsg); }).catch(function () { fallbackSelect(); done('Selected. Press Ctrl+C or Cmd+C to copy.'); });
+        } else {
+          fallbackSelect(); done('Selected. Press Ctrl+C or Cmd+C to copy.');
+        }
+      });
+    }
+
+    var input = document.getElementById('ref-link');
+    copier('copy-btn', function () { return input.value; }, 'copy-note', 'Link copied. Paste it into a text or email to your client.', function () { input.focus(); input.select(); });
+
+    var emailEl = document.getElementById('email-text');
+    copier('copy-email', function () { return emailEl.textContent.trim(); }, 'email-note', 'Email address copied.', function () {
+      var r = document.createRange(); r.selectNodeContents(emailEl);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    });
+  })();
+</script>
+</body>
+</html>
