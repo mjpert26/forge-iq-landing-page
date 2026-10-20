@@ -1,6 +1,7 @@
 /** Page copy, kept separate from layout so it can be edited without touching components. */
 
 export const hero = {
+  eyebrow: "Partner program",
   headline: ["Your client needs commercial real estate capital.", "Send it to Forge."],
   lead: "Forge Capital Advisory places commercial real estate deals through direct lender relationships. You bring the client. We screen it in minutes, run the deal, and keep you updated until it funds.",
   primaryCta: { href: "#refer", label: "Get the referral link" },

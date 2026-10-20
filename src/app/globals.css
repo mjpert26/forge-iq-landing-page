@@ -1,40 +1,36 @@
 @import "tailwindcss";
 
 /*
- * Theme: the page is intentionally light, with navy brand bands for the
- * header, hero, Forge IQ and footer. It does not follow the OS dark-mode
- * setting, so brand colours and contrast stay as designed on every device.
+ * Theme: matches the updated Forge Partners design. The page uses a fixed
+ * light colour scheme with navy brand bands (header, hero, referral block),
+ * so brand colours and contrast stay as designed regardless of OS dark mode.
  */
 @theme {
   --color-navy: #0a1628;
-  --color-navy-2: #0f2040;
-  --color-navy-line: #1e3358;
-  --color-navy-line-2: #23406e;
-  --color-on-navy: #f8faff;
-  --color-on-navy-muted: #b6c2d6;
+  --color-navy-deep: #061020;
+  --color-on-navy: #f1f5f9;
+  --color-on-navy-muted: #a9b9cc;
 
   --color-orange: #f26b1d;
-  --color-orange-hover: #ff7f35;
-  --color-orange-ink: #b8470a; /* orange text on light grounds (AA) */
-  --color-orange-soft: #ff9a5c; /* orange text on navy (AA) */
   --color-blue: #1565c0;
-  --color-blue-soft: #6aa8f0;
 
-  --color-page: #f8faff;
-  --color-surface: #ffffff;
+  --color-page: #f5f7f9;
+  --color-paper: #ffffff;
   --color-ink: #0a1628;
-  --color-muted: #4b5563;
-  --color-line: #d7dfec;
+  --color-muted: #5b6b82;
+  --color-line: #d9e0e8;
 
-  --color-signal-green: #2fb36b;
-  --color-signal-yellow: #f2b705;
-  --color-signal-red: #e5534b;
+  --color-signal-green: #2e9d5b;
+  --color-signal-yellow: #d9a21b;
+  --color-signal-red: #cf3a3a;
 
-  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
-  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-source-sans), "Segoe UI", Helvetica, Arial, sans-serif;
   --font-brand: var(--font-barlow), "Arial Narrow", sans-serif;
+}
 
-  --header-h: 4.25rem;
+:root {
+  --header-h: 4rem;
 }
 
 @layer base {
@@ -59,7 +55,7 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
-    line-height: 1.6;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
@@ -67,7 +63,10 @@
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    line-height: 1.12;
     text-wrap: balance;
   }
 
@@ -79,7 +78,7 @@
 
   :focus-visible {
     outline: 3px solid var(--color-orange);
-    outline-offset: 3px;
+    outline-offset: 2px;
     border-radius: 4px;
   }
 }
@@ -87,13 +86,13 @@
 @layer components {
   .container-page {
     width: 100%;
-    max-width: 74rem;
+    max-width: 65rem;
     margin-inline: auto;
     padding-inline: max(1.25rem, env(safe-area-inset-left, 0px));
   }
   @media (min-width: 40rem) {
     .container-page {
-      padding-inline: 1.75rem;
+      padding-inline: 1.5rem;
     }
   }
 
@@ -101,77 +100,72 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.625rem;
-    min-height: 3rem;
-    padding: 0 1.375rem;
-    border-radius: 6px;
-    border: 2px solid transparent;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.125rem;
+    border-radius: 4px;
+    border: 1.5px solid transparent;
+    font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
     line-height: 1;
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
-    transition:
-      background-color 160ms ease,
-      border-color 160ms ease,
-      color 160ms ease,
-      transform 160ms ease;
   }
-  .btn:active {
-    transform: translateY(1px);
+  @media (prefers-reduced-motion: no-preference) {
+    .btn {
+      transition:
+        filter 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease;
+    }
   }
-  .btn-primary {
+  .btn:hover {
+    filter: brightness(1.08);
+  }
+  .btn-orange {
     background: var(--color-orange);
     color: var(--color-navy);
   }
-  .btn-primary:hover {
-    background: var(--color-orange-hover);
-  }
   .btn-ghost {
-    border-color: rgb(248 250 255 / 0.45);
+    border-color: rgb(255 255 255 / 0.35);
     color: var(--color-on-navy);
   }
   .btn-ghost:hover {
-    border-color: var(--color-on-navy);
-    background: rgb(248 250 255 / 0.06);
+    border-color: rgb(255 255 255 / 0.75);
   }
   .btn-navy {
     background: var(--color-navy);
     color: var(--color-on-navy);
   }
   .btn-navy:hover {
-    background: var(--color-navy-2);
+    filter: none;
+    background: #13284a;
   }
 
-  .kicker {
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
     font-weight: 700;
-    font-size: 0.875rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-orange-ink);
+    color: var(--color-blue);
   }
 
   .heading-section {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(2.125rem, 1.4rem + 2.6vw, 3.375rem);
-    line-height: 1.06;
-    letter-spacing: 0.01em;
+    font-size: clamp(1.625rem, 1rem + 2.2vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
   }
 
-  /* Brand accent stripe (orange to blue), used sparingly. */
-  .cooling {
-    height: 8px;
-    background: linear-gradient(
-      90deg,
-      #fdd27a 0%,
-      #f26b1d 22%,
-      #c75a39 42%,
-      #636696 58%,
-      #1b6fdd 76%,
-      #0c47a0 100%
-    );
+  .label-caps {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
   }
 }
 

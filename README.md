@@ -33,10 +33,10 @@ npm run dev          # http://localhost:3000
 | Application URL, website link, contact email, site name, page title and description, navigation labels | `src/config/site.ts`                                       |
 | Section copy (hero, What We Place, How It Works, Forge IQ intro, referral, disclaimer)   | `src/content/page.ts`                                                               |
 | Forge IQ sample deal and Green/Yellow/Red meanings                                       | `src/content/forge-iq.ts`                                                           |
-| Brand colours, fonts, buttons, accent stripe, motion                                     | `src/app/globals.css` (`@theme` tokens and component classes)                       |
-| Fonts (Anton, Archivo, Barlow Condensed, self-hosted at build time by `next/font`)       | `src/app/layout.tsx`                                                                |
+| Brand colours, fonts, buttons, motion                                                    | `src/app/globals.css` (`@theme` tokens and component classes)                       |
+| Fonts (Montserrat, Source Sans 3, Barlow Condensed, self-hosted at build time by `next/font`) | `src/app/layout.tsx`                                                                |
 | Section layout                                                                           | `src/components/sections/*`                                                         |
-| Logos                                                                                    | `public/brand/` (lockups for dark and light grounds, symbol) and `src/components/ui/ForgeSymbol.tsx` |
+| Logos (gradient Forge symbol)                                                            | `public/brand/` (lockups for dark and light grounds, symbol) and `src/components/ui/ForgeSymbol.tsx` |
 | Favicon, Apple touch icon, social sharing image                                          | `src/app/icon.svg`, `src/app/favicon.ico`, `src/app/apple-icon.png`, `src/app/opengraph-image.png` (+ `.alt.txt`) |
 
 Notes:
@@ -68,7 +68,8 @@ If `NEXT_PUBLIC_SITE_URL` is not set, the build falls back to Vercel's `VERCEL_P
 ## Project layout
 
 ```
-references/               Original HTML prototypes (design reference only; not served)
+references/               HTML prototypes (design reference only; not served).
+                          "Forge Partners (updated).html" is the current design.
 public/brand/             Optimised SVG logo assets
 src/app/                  Layout, page, metadata routes, icons, social image, global styles
 src/components/sections/  One component per page section (+ client islands)

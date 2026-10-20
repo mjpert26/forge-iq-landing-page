@@ -39,13 +39,13 @@ export function MobileNav() {
 
   return (
     <div className="flex items-center gap-2 md:hidden">
-      <a href={referCta.href} className="btn btn-primary !min-h-11 !px-4 text-[0.9375rem]">
+      <a href={referCta.href} className="btn btn-orange !px-3 text-[0.8125rem]">
         {referCta.label}
       </a>
       <button
         ref={buttonRef}
         type="button"
-        className="inline-flex size-11 items-center justify-center rounded-md border-2 border-on-navy/30 text-on-navy transition-colors hover:border-on-navy"
+        className="inline-flex size-11 items-center justify-center rounded-md border-[1.5px] border-white/35 text-on-navy transition-colors hover:border-on-navy"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
@@ -64,7 +64,7 @@ export function MobileNav() {
         ref={panelRef}
         id={panelId}
         hidden={!open}
-        className="absolute inset-x-0 top-full border-b border-navy-line bg-navy shadow-[0_18px_30px_-18px_rgb(0_0_0/0.6)]"
+        className="absolute inset-x-0 top-full border-t border-white/10 bg-navy shadow-[0_18px_30px_-18px_rgb(0_0_0/0.6)]"
       >
         <nav aria-label="Main" className="container-page flex flex-col py-2">
           {navLinks.map((link) => (
@@ -72,7 +72,7 @@ export function MobileNav() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="flex min-h-12 items-center border-b border-navy-line text-base font-semibold text-on-navy no-underline last:border-b-0 hover:text-orange-soft"
+              className="flex min-h-12 items-center border-b border-white/10 font-display text-[0.9375rem] font-semibold text-on-navy no-underline last:border-b-0 hover:text-orange"
             >
               {link.label}
             </a>

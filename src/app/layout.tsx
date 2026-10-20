@@ -1,10 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Archivo, Barlow_Condensed } from "next/font/google";
+import { Barlow_Condensed, Montserrat, Source_Sans_3 } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const anton = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton", display: "swap" });
-const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo", display: "swap" });
+const montserrat = Montserrat({
+  weight: ["500", "700", "800"],
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+const sourceSans = Source_Sans_3({
+  weight: ["400", "600"],
+  subsets: ["latin"],
+  variable: "--font-source-sans",
+  display: "swap",
+});
 const barlow = Barlow_Condensed({
   weight: ["600", "700"],
   subsets: ["latin"],
@@ -41,7 +51,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${anton.variable} ${archivo.variable} ${barlow.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${sourceSans.variable} ${barlow.variable}`}>
       <body>{children}</body>
     </html>
   );

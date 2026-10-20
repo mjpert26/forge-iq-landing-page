@@ -4,21 +4,21 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function WhatWePlace() {
   return (
-    <section id="place" aria-labelledby="place-title" className="py-20 md:py-24">
+    <section id="place" aria-labelledby="place-title" className="border-y border-line bg-paper py-14 md:py-16">
       <div className="container-page">
         <SectionHeading
           id="place-title"
-          kicker={whatWePlace.kicker}
+          eyebrow={whatWePlace.kicker}
           title={whatWePlace.title}
           intro={whatWePlace.intro}
         />
-        <div className="grid gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
+        <div className="mt-8 grid gap-6 md:grid-cols-3 md:gap-5">
           {whatWePlace.groups.map((group, index) => (
-            <Reveal key={group.title} index={index}>
-              <h3 className="mb-3 text-xl leading-snug font-bold text-blue">{group.title}</h3>
-              <ul className="border-t-[3px] border-orange">
+            <Reveal key={group.title} index={index} className="min-w-0">
+              <h3 className="mb-2 text-[1.1875rem] font-bold">{group.title}</h3>
+              <ul className="mt-2 list-disc pl-[1.125rem] text-muted">
                 {group.items.map((item) => (
-                  <li key={item} className="border-b border-line py-3.5 leading-snug">
+                  <li key={item} className="mt-1">
                     {item}
                   </li>
                 ))}

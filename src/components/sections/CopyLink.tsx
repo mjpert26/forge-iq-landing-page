@@ -46,10 +46,10 @@ export function CopyLink({ url, inputId }: { url: string; inputId: string }) {
 
   return (
     <div>
-      <label htmlFor={inputId} className="mb-2 block font-bold">
+      <label htmlFor={inputId} className="label-caps mb-2 block">
         Referral link
       </label>
-      <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+      <div className="flex items-stretch gap-2">
         <input
           ref={inputRef}
           id={inputId}
@@ -59,12 +59,12 @@ export function CopyLink({ url, inputId }: { url: string; inputId: string }) {
           spellCheck={false}
           aria-describedby={`${inputId}-hint`}
           onFocus={(event) => event.currentTarget.select()}
-          className="min-h-14 w-full min-w-0 rounded-md border-2 border-line bg-page px-4 text-base font-semibold text-ink sm:text-[1.0625rem]"
+          className="min-h-11 w-full min-w-0 flex-1 rounded border border-line bg-page px-3 py-2.5 text-[0.9375rem] font-semibold text-ink"
         />
         <button
           type="button"
           onClick={handleCopy}
-          className="btn btn-navy min-h-14 min-w-[8.5rem]"
+          className="btn btn-orange min-w-[6.5rem] shrink-0 !px-4 text-[0.8125rem]"
         >
           {status === "copied" ? (
             <>
@@ -78,11 +78,11 @@ export function CopyLink({ url, inputId }: { url: string; inputId: string }) {
           )}
         </button>
       </div>
-      <p role="status" aria-live="polite" className="mt-3 min-h-[1.6em] text-[0.9375rem] font-semibold">
+      <p role="status" aria-live="polite" className="mt-2 min-h-[1.5em] text-sm font-semibold empty:mt-0 empty:min-h-0">
         {status === "copied" ? (
           <span className="text-[#1d7a46]">Link copied to your clipboard.</span>
         ) : status === "failed" ? (
-          <span className="text-orange-ink">
+          <span className="text-[#a8410a]">
             Couldn&rsquo;t copy automatically. The link is selected: press Ctrl+C (Windows) or Cmd+C
             (Mac), or press and hold to copy on a phone.
           </span>
