@@ -16,14 +16,21 @@ export function SiteFooter() {
           className="h-auto w-[15rem] sm:w-[17.5rem]"
         />
         <div className="text-[0.9375rem] leading-relaxed">
-          <p className="mb-3 text-base text-on-navy">
+          <p className="mb-3 flex flex-wrap items-center gap-x-3 text-base text-on-navy">
             {contactEmail ? (
               <>
-                Questions?{" "}
-                <a href={`mailto:${contactEmail}`} className="text-on-navy underline underline-offset-4 hover:text-orange-soft">
-                  {contactEmail}
-                </a>
-                {" · "}
+                <span>
+                  Questions?{" "}
+                  <a
+                    href={`mailto:${contactEmail}`}
+                    className="inline-flex min-h-11 items-center text-on-navy underline underline-offset-4 hover:text-orange-soft"
+                  >
+                    {contactEmail}
+                  </a>
+                </span>
+                <span aria-hidden="true" className="hidden sm:inline">
+                  ·
+                </span>
               </>
             ) : null}
             <a

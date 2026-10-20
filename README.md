@@ -41,7 +41,7 @@ npm run dev          # http://localhost:3000
 
 Notes:
 
-- **Contact email.** `contactEmail` in `src/config/site.ts` is `null`, so the footer omits the email link. Set it to the confirmed address to show it.
+- **Contact email.** The footer shows `contactEmail` from `src/config/site.ts` (currently `hello@forgecapitaladvisory.com`). Set it to `null` to hide the email link.
 - **Disclaimer.** The lender-eligibility disclaimer in `src/content/page.ts` is supplied copy; keep it verbatim unless Compliance approves a change.
 - **Forge IQ panel.** The panel is an illustrative, display-only example. It is not a screening tool and has no scoring logic. `ForgeIqPreview` renders any `ScreenResult`, so a future integration can pass in real results.
 - **Referral link.** The application link is shared by all partners. It does not identify the referring partner; partners are told to enter their name in the application's referral-source field.

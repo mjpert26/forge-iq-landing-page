@@ -30,11 +30,8 @@ export const siteConfig = {
     href: "https://forgecapitaladvisory.com",
   },
 
-  /**
-   * Partner contact email. Leave as null until a confirmed address is supplied;
-   * the footer omits the email link while this is null.
-   */
-  contactEmail: null as string | null,
+  /** Partner contact email shown in the footer. Set to null to hide the email link. */
+  contactEmail: "hello@forgecapitaladvisory.com" as string | null,
 } as const;
 
 export const navLinks = [
